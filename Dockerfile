@@ -6,7 +6,6 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV FLASK_APP=api/index.py
 ENV FLASK_ENV=production
-ENV PORT=8000
 
 # Install system dependencies
 RUN apt-get update && \
@@ -26,4 +25,4 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 
 # Command to run the application
-CMD gunicorn --bind 0.0.0.0:${PORT:-8000} --workers 4 --timeout 120 api.index:app
+CMD gunicorn --bind 0.0.0.0:8000 --workers 4 --timeout 120 api.index:app
